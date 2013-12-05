@@ -1,5 +1,44 @@
 @import "elements.less";
 
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.inline-block() {
+	display:-moz-inline-stack;
+	display:inline-block;
+	zoom:1;
+	*display:inline;
+
+	vertical-align: top;
+}
+
+.targeted-transition(@property: all, @duration:0.2s, @ease:ease-out) {
+  -webkit-transition: @property @duration @ease;
+  -moz-transition: @property @duration @ease;
+  transition: @property @duration @ease;
+}
+
+.box() {
+	background-color: #eeeeee;
+	.drop-shadow(0, 1px, 2px, 0.1);
+	.rounded(.5em);
+	.targeted-transition(box-shadow);
+
+	&:hover {
+		.drop-shadow(1px, 2px, 4px, 0.4);
+	}
+}
+
+.list-reset() {
+	ul, ul li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+}
+
 body {
 	padding: 1em;
 	padding-bottom: 3em;
@@ -17,7 +56,8 @@ body {
 }
 
 #filter-form {
-	background-color: #eeeeee;
+	.box();
+
 	margin-bottom: 1em;
 	padding: 1em 2em;
 
@@ -29,8 +69,35 @@ body {
 		margin-bottom: .25em;
 		width: 100%;
 	}
+}
 
-	.rounded(.5em);
+.contact {
+	.box();
+
+	margin-bottom: 1em;
+	padding: 1em 2em;
+	position: relative;
+
+	.list-reset();
+
+	.contact-fields {
+		li {
+			margin: .5em 0;
+		}
+
+		label {
+			font-weight: bold;
+			width: 100px;
+			.inline-block();
+		}
+	}
+
+	.contact-action {
+		color: #000000;
+		position: absolute;
+		right: 1em;
+		top: 1em;
+	}
 }
 
 @media (min-width: 1024px) {
@@ -49,5 +116,64 @@ body {
 			margin-right: .25em;
 			width: 80%;
 		}
+	}
+
+	.contact {
+		margin-right: 16px;
+		width: 472px;
+
+		.inline-block();
+
+		&:nth-child(2n) {
+			margin-right: 0;
+		}
+	}
+}
+
+
+
+#create-form {
+	display: none;
+}
+
+
+/*
+	unschön, dass man wegen der abs. Positionierung die Maße der Box manuell festlegen muss
+.csstransforms3d {
+	.contact {
+		position: relative;
+	}
+
+	.contact-edit, .contact-view {
+		position: absolute;
+	}
+
+	.contact.front-facing {
+		.contact-edit {
+			transform: rotateY( 180deg );
+		}
+	}
+}
+
+.no-csstransforms3d {
+}*/
+
+.contact.front-facing {
+	.contact-edit {
+		display: none;
+	}
+
+	.contact-view {
+		display: block;
+	}
+}
+
+.contact.back-facing {
+	.contact-edit {
+		display: block;
+	}
+
+	.contact-view {
+		display: none;
 	}
 }
