@@ -2,14 +2,21 @@
 
 ## Roadmap
 
+### later
+
+* [ ] dynamic fields
+* [ ] companies
+* [ ] sort by most frequently found * number of matches in query
+* [ ] notes field
+
 ### Version 0.1.2
 
-* [ ] toggle create form
-* [ ] toggle edit form
+* [X] toggle create form
+* [X] toggle edit form
 
 ### Version 0.1.1
 
-* [ ] basic contact card layout
+* [X] basic contact card layout
 
 ### Version 0.1.0
 
