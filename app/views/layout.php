@@ -20,7 +20,7 @@
 		<!--<h1>Dolores</h1>-->
 
 		<main>
-			<form action="/" id="filter-form" method="get">
+			<form action="/#contacts" id="filter-form" method="get">
 				<input name="filter" placeholder="Kontakte durchsuchen" type="search" value="<?php print isset($filter) ? $filter : '' ?>" /><!--
 				--><input type="submit" value="Suche starten" /><!--
 			--></form>
@@ -52,37 +52,46 @@
 
 			<?php
 				if(isset($contacts)) {
-					foreach($contacts as $contact) {
-						print '<div class="contact front-facing">';
-							print '<div class="contact-view">';
-								print sprintf('<h1>%s %s</h1>', render_field($contact->value->fields, 'first_name', false), render_field($contact->value->fields, 'last_name', false));
-								$hide_fields = array('first_name', 'last_name');
-								print '<ul class="contact-fields">';
-								foreach($contact->value->fields as $key => $field) {
-									if(!in_array($field->type, $hide_fields) && !empty($field->value)) {
-										print sprintf('<li><label>%s</label><span>%s</span></li>', $field->label, $field->value);
-									}
-								}
-								print '</ul>';
-								print '<a class="contact-action contact-action-edit" href="javascript:void(0);" title="Kontakt bearbeiten"><i class="fa fa-pencil"></i></a>';
-							print '</div>';
-							print '<div class="contact-edit">';
-								print '<form action="/contact/update" method="post">';
-									print sprintf('<input name="contact[_id]" type="hidden" value="%s" /> ', $contact->value->{'_id'});
-									print sprintf('<input name="contact[_rev]" type="hidden" value="%s" /> ', $contact->value->{'_rev'});
+					print '<section id="contacts">';
+						foreach($contacts as $contact) {
+							print '<div class="contact front-facing">';
 
+								print '<div class="contact-view">';
+									print sprintf('<h1>%s %s</h1>', render_field($contact->value->fields, 'first_name', false), render_field($contact->value->fields, 'last_name', false));
+									$hide_fields = array('first_name', 'last_name');
+									print '<ul class="contact-fields">';
 									foreach($contact->value->fields as $key => $field) {
-										print sprintf('<input name="contact[fields][%s][type]" type="hidden" value="%s" /> ', $key, $field->type);
-										print sprintf('<input name="contact[fields][%s][label]" type="hidden" value="%s" />', $key, $field->label);
-										print sprintf('<input name="contact[fields][%s][value]" placeholder="%s" type="text" value="%s" /> ', $key, $field->label, $field->value);
+										if(!in_array($field->type, $hide_fields) && !empty($field->value)) {
+											print sprintf('<li><label>%s</label><span>%s</span></li>', $field->label, $field->value);
+										}
 									}
-									print sprintf('<a href="/contact/delete/%s/%s">Kontakt löschen</a>', $contact->value->{'_id'}, $contact->value->{'_rev'});
-									print '<input type="submit" value="Kontakt speichern" />';
-								print '</form>';
-								print '<a class="contact-action contact-action-close" href="javascript:void(0);" title="Formular schließen"><i class="fa fa-reply"></i></a>';
-							print '</div>';
-						print '</div>';					
-					}
+									print '</ul>';
+									print '<a class="contact-action contact-action-edit" href="javascript:void(0);" title="Kontakt bearbeiten"><i class="fa fa-pencil"></i></a>';
+								print '</div>';
+
+								print '<div class="contact-edit">';
+									print '<form action="/contact/update" method="post">';
+										print sprintf('<input name="contact[_id]" type="hidden" value="%s" /> ', $contact->value->{'_id'});
+										print sprintf('<input name="contact[_rev]" type="hidden" value="%s" /> ', $contact->value->{'_rev'});
+
+										print '<ul>';
+										foreach($contact->value->fields as $key => $field) {
+											print '<li>';
+											print sprintf('<input name="contact[fields][%s][type]" type="hidden" value="%s" /> ', $key, $field->type);
+											print sprintf('<input name="contact[fields][%s][label]" type="hidden" value="%s" />', $key, $field->label);
+											print sprintf('<input name="contact[fields][%s][value]" placeholder="%s" type="text" value="%s" /> ', $key, $field->label, $field->value);
+											print '</li>';
+										}
+										print '<li><input type="submit" value="Kontakt speichern" /></li>';
+										print sprintf('<li class="d-d-d-danger"><a class="contact-action-delete" href="/contact/delete/%s/%s">Kontakt löschen</a></li>', $contact->value->{'_id'}, $contact->value->{'_rev'});
+										print '</ul>';
+									print '</form>';
+									print '<a class="contact-action contact-action-close" href="javascript:void(0);" title="Formular schließen"><i class="fa fa-reply"></i></a>';
+								print '</div>';
+
+							print '</div>';					
+						}
+					print '</section>';
 				}
 
 				function render_field($fields, $field_name, $show_label = true) {
