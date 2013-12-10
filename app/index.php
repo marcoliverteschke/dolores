@@ -14,7 +14,7 @@
 
 		lessc::ccompile('css/2013.dolores.less', 'css/2013.dolores.css');
 
-		Flight::view()->set('version', '0.1.0');
+		Flight::view()->set('version', '0.1.2');
 
 		if(!Flight::has('couchdb_connect')) {
 			$couchdb_connect = new CouchConnect;
