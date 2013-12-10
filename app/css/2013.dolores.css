@@ -41,21 +41,112 @@ body {
   -moz-background-clip:padding;
   -webkit-background-clip:padding-box;
   background-clip:padding-box;
-  -webkit-transition:box-shadow 0.2s ease-out;
-  -moz-transition:box-shadow 0.2s ease-out;
-  transition:box-shadow 0.2s ease-out;
   margin-bottom:1em;
   padding:1em 2em;
-}
-#filter-form:hover {
-  -webkit-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
-  -moz-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
-  box-shadow:1px 2px 4px rgba(0,0,0,0.4);
 }
 #filter-form input { font-size:1.5em; }
 #filter-form input[type="search"] {
   margin-bottom:.25em;
   width:100%;
+}
+#filter-form input[type="submit"] {
+  border:1px solid #ffffff;
+  padding:.5em 1em;
+  -webkit-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -webkit-border-radius:.25em;
+  -moz-border-radius:.25em;
+  border-radius:.25em;
+  -moz-background-clip:padding;
+  -webkit-background-clip:padding-box;
+  background-clip:padding-box;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  background:#dddddd;
+  background:-webkit-gradient(linear,left bottom,left top,color-stop(0,#dddddd),color-stop(1,#eaeaea));
+  background:-ms-linear-gradient(bottom,#dddddd,#eaeaea);
+  background:-moz-linear-gradient(center bottom,#dddddd 0%,#eaeaea 100%);
+  padding:.1em .25em;
+}
+#filter-form input[type="submit"]:hover {
+  -webkit-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+  -moz-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+  box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+}
+#filter-form input[type="submit"]:active {
+  -webkit-box-shadow:0 0 1px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 0 1px rgba(0,0,0,0.1);
+  box-shadow:0 0 1px rgba(0,0,0,0.1);
+}
+#create-form {
+  background-color:#eeeeee;
+  -webkit-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -webkit-border-radius:.5em;
+  -moz-border-radius:.5em;
+  border-radius:.5em;
+  -moz-background-clip:padding;
+  -webkit-background-clip:padding-box;
+  background-clip:padding-box;
+  margin-bottom:1em;
+  padding:1em 2em;
+  opacity:.7;
+  -webkit-transition:opacity 0.2s ease-out;
+  -moz-transition:opacity 0.2s ease-out;
+  transition:opacity 0.2s ease-out;
+}
+#create-form:hover, #create-form:focus { opacity:1; }
+#create-form input {
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  margin:.25em .5em .25em 0;
+  width:100%;
+}
+#create-form input[type="submit"] {
+  border:1px solid #ffffff;
+  padding:.5em 1em;
+  -webkit-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -webkit-border-radius:.25em;
+  -moz-border-radius:.25em;
+  border-radius:.25em;
+  -moz-background-clip:padding;
+  -webkit-background-clip:padding-box;
+  background-clip:padding-box;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  background:#dddddd;
+  background:-webkit-gradient(linear,left bottom,left top,color-stop(0,#dddddd),color-stop(1,#eaeaea));
+  background:-ms-linear-gradient(bottom,#dddddd,#eaeaea);
+  background:-moz-linear-gradient(center bottom,#dddddd 0%,#eaeaea 100%);
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  width:auto;
+}
+#create-form input[type="submit"]:hover {
+  -webkit-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+  -moz-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+  box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+}
+#create-form input[type="submit"]:active {
+  -webkit-box-shadow:0 0 1px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 0 1px rgba(0,0,0,0.1);
+  box-shadow:0 0 1px rgba(0,0,0,0.1);
 }
 .contact {
   background-color:#eeeeee;
@@ -68,23 +159,16 @@ body {
   -moz-background-clip:padding;
   -webkit-background-clip:padding-box;
   background-clip:padding-box;
-  -webkit-transition:box-shadow 0.2s ease-out;
-  -moz-transition:box-shadow 0.2s ease-out;
-  transition:box-shadow 0.2s ease-out;
   margin-bottom:1em;
   padding:1em 2em;
   position:relative;
-}
-.contact:hover {
-  -webkit-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
-  -moz-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
-  box-shadow:1px 2px 4px rgba(0,0,0,0.4);
 }
 .contact ul, .contact ul li {
   margin:0;
   padding:0;
   list-style:none;
 }
+.contact h1 { margin:0 0 .5em 0; }
 .contact .contact-fields li { margin:.5em 0; }
 .contact .contact-fields label {
   font-weight:bold;
@@ -97,9 +181,90 @@ body {
 }
 .contact .contact-action {
   color:#000000;
+  font-size:1.5em;
   position:absolute;
   right:1em;
   top:1em;
+}
+.contact.front-facing .contact-edit { display:none; }
+.contact.front-facing .contact-view { display:block; }
+.contact.back-facing .contact-edit { display:block; }
+.contact.back-facing .contact-view { display:none; }
+.contact .contact-edit li { margin:.25em 0; }
+.contact .contact-edit input { width:90%; }
+.contact .contact-edit input[type="submit"] {
+  border:1px solid #ffffff;
+  padding:.5em 1em;
+  -webkit-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -webkit-border-radius:.25em;
+  -moz-border-radius:.25em;
+  border-radius:.25em;
+  -moz-background-clip:padding;
+  -webkit-background-clip:padding-box;
+  background-clip:padding-box;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  background:#dddddd;
+  background:-webkit-gradient(linear,left bottom,left top,color-stop(0,#dddddd),color-stop(1,#eaeaea));
+  background:-ms-linear-gradient(bottom,#dddddd,#eaeaea);
+  background:-moz-linear-gradient(center bottom,#dddddd 0%,#eaeaea 100%);
+  width:auto;
+}
+.contact .contact-edit input[type="submit"]:hover {
+  -webkit-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+  -moz-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+  box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+}
+.contact .contact-edit input[type="submit"]:active {
+  -webkit-box-shadow:0 0 1px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 0 1px rgba(0,0,0,0.1);
+  box-shadow:0 0 1px rgba(0,0,0,0.1);
+}
+.contact .contact-edit .d-d-d-danger { margin-top:1em; }
+.contact .contact-edit .d-d-d-danger a {
+  color:#ffffff;
+  font-size:.75em;
+  float:right;
+  text-decoration:none;
+  border:1px solid #ffffff;
+  padding:.5em 1em;
+  -webkit-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  box-shadow:0 1px 2px rgba(0,0,0,0.1);
+  -webkit-border-radius:.25em;
+  -moz-border-radius:.25em;
+  border-radius:.25em;
+  -moz-background-clip:padding;
+  -webkit-background-clip:padding-box;
+  background-clip:padding-box;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  background:#dddddd;
+  background:-webkit-gradient(linear,left bottom,left top,color-stop(0,#dddddd),color-stop(1,#eaeaea));
+  background:-ms-linear-gradient(bottom,#dddddd,#eaeaea);
+  background:-moz-linear-gradient(center bottom,#dddddd 0%,#eaeaea 100%);
+  background:#ff0000;
+  background:-webkit-gradient(linear,left bottom,left top,color-stop(0,#e60000),color-stop(1,#ff0000));
+  background:-ms-linear-gradient(bottom,#e60000,#ff0000);
+  background:-moz-linear-gradient(center bottom,#e60000 0%,#ff0000 100%);
+}
+.contact .contact-edit .d-d-d-danger a:hover {
+  -webkit-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+  -moz-box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+  box-shadow:1px 2px 4px rgba(0,0,0,0.4);
+}
+.contact .contact-edit .d-d-d-danger a:active {
+  -webkit-box-shadow:0 0 1px rgba(0,0,0,0.1);
+  -moz-box-shadow:0 0 1px rgba(0,0,0,0.1);
+  box-shadow:0 0 1px rgba(0,0,0,0.1);
 }
 @media (min-width: 1024px) {
   main {
@@ -122,9 +287,7 @@ body {
     vertical-align:top;
   }
   .contact:nth-child(2n) { margin-right:0; }
+  .contact .contact-action { font-size:1em; }
+  #create-form input { width:auto; }
+  #create-form input[type="submit"] { float:right; }
 }
-#create-form { display:none; }
-.contact.front-facing .contact-edit { display:none; }
-.contact.front-facing .contact-view { display:block; }
-.contact.back-facing .contact-edit { display:block; }
-.contact.back-facing .contact-view { display:none; }

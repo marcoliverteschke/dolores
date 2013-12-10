@@ -24,11 +24,32 @@
 	background-color: #eeeeee;
 	.drop-shadow(0, 1px, 2px, 0.1);
 	.rounded(.5em);
-	.targeted-transition(box-shadow);
+
+	&:hover {
+//		background-color: lighten(#eeeeee, 3%);
+	}
+}
+
+.button() {
+	border: 1px solid #ffffff;
+	padding: .5em 1em;
+	.drop-shadow(0, 1px, 2px, 0.1);
+	.rounded(.25em);
+	.inline-block();
+	.gradient(#dddddd, #dddddd, lighten(#dddddd, 5%));
 
 	&:hover {
 		.drop-shadow(1px, 2px, 4px, 0.4);
 	}
+
+	&:active {
+		.drop-shadow(0, 0, 1px, 0.1);
+	}
+}
+
+.button-red() {
+	.button();
+	.gradient(#ff0000, darken(#ff0000, 5%), #ff0000);
 }
 
 .list-reset() {
@@ -69,6 +90,36 @@ body {
 		margin-bottom: .25em;
 		width: 100%;
 	}
+
+	input[type="submit"] {
+		.button();
+		padding: .1em .25em;
+	}
+}
+
+#create-form {
+	.box();
+	margin-bottom: 1em;
+	padding: 1em 2em;
+	opacity: .5;
+
+	.targeted-transition(opacity);
+
+	&:hover, &:focus {
+		opacity: 1;
+	}
+
+	input {
+		.inline-block();
+		margin: .25em .5em .25em 0;
+		width: 100%;
+	}
+
+	input[type="submit"] {
+		.button();
+		.inline-block();
+		width: auto;
+	}
 }
 
 .contact {
@@ -79,6 +130,10 @@ body {
 	position: relative;
 
 	.list-reset();
+
+	h1 {
+		margin: 0 0 .5em 0;
+	}
 
 	.contact-fields {
 		li {
@@ -94,9 +149,62 @@ body {
 
 	.contact-action {
 		color: #000000;
+		font-size: 1.5em;
 		position: absolute;
 		right: 1em;
 		top: 1em;
+	}
+
+	&.front-facing {
+		.contact-edit {
+			display: none;
+		}
+
+		.contact-view {
+			display: block;
+		}
+	}
+
+	&.back-facing {
+		.contact-edit {
+			display: block;
+		}
+
+		.contact-view {
+			display: none;
+		}
+	}
+
+	.contact-edit {
+		ul {
+//			font-size: 1.25em;
+		}
+
+		li {
+			margin: .25em 0;
+		}
+
+		input {
+			width: 90%;
+		}
+
+		input[type="submit"] {
+			.button();
+			width: auto;
+		}
+
+		.d-d-d-danger {
+			margin-top: 1em;
+
+			a {
+				color: #ffffff;
+				font-size: .75em;
+				float: right;
+				text-decoration: none;
+
+				.button-red();
+			}
+		}
 	}
 }
 
@@ -127,14 +235,25 @@ body {
 		&:nth-child(2n) {
 			margin-right: 0;
 		}
+
+		.contact-action {
+			font-size: 1em;
+		}
+	}
+
+
+	#create-form {
+		input {
+			width: auto;
+		}
+
+	input[type="submit"] {
+		float: right;
 	}
 }
 
-
-
-#create-form {
-	display: none;
 }
+
 
 
 /*
@@ -157,23 +276,3 @@ body {
 
 .no-csstransforms3d {
 }*/
-
-.contact.front-facing {
-	.contact-edit {
-		display: none;
-	}
-
-	.contact-view {
-		display: block;
-	}
-}
-
-.contact.back-facing {
-	.contact-edit {
-		display: block;
-	}
-
-	.contact-view {
-		display: none;
-	}
-}
