@@ -41,7 +41,7 @@
 			$curl = new Curl;
 			$response_json = $curl->get($this->couchdb_server_url . '/' . $this->couchdb_database . '/_design/contacts/_view/find_all');
 			$response_object = json_decode($response_json);
-			$this->write_error_log(print_r($response_object, 1));
+//			$this->write_error_log(print_r($response_object, 1));
 
 			if(isset($response_object->rows) && is_array($response_object->rows)) {
 				if(isset($params['conditions'])) {
