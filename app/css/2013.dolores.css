@@ -95,13 +95,14 @@ body {
   background-clip:padding-box;
   margin-bottom:1em;
   padding:1em 2em;
-  opacity:.7;
+  opacity:.5;
   -webkit-transition:opacity 0.2s ease-out;
   -moz-transition:opacity 0.2s ease-out;
   transition:opacity 0.2s ease-out;
 }
 #create-form:hover, #create-form:focus { opacity:1; }
-#create-form input {
+#create-form input, #create-form textarea {
+  border:1px solid #dddddd;
   display:-moz-inline-stack;
   display:inline-block;
   zoom:1;
@@ -109,6 +110,10 @@ body {
   vertical-align:top;
   margin:.25em .5em .25em 0;
   width:100%;
+}
+#create-form textarea {
+  height:3em;
+  resize:vertical;
 }
 #create-form input[type="submit"] {
   border:1px solid #ffffff;
@@ -191,7 +196,20 @@ body {
 .contact.back-facing .contact-edit { display:block; }
 .contact.back-facing .contact-view { display:none; }
 .contact .contact-edit li { margin:.25em 0; }
-.contact .contact-edit input { width:90%; }
+.contact .contact-edit input, .contact .contact-edit textarea {
+  border:1px solid #dddddd;
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+  vertical-align:top;
+  margin:.25em .5em .25em 0;
+  width:90%;
+}
+.contact .contact-edit textarea {
+  height:3em;
+  resize:vertical;
+}
 .contact .contact-edit input[type="submit"] {
   border:1px solid #ffffff;
   padding:.5em 1em;
@@ -288,6 +306,6 @@ body {
   }
   .contact:nth-child(2n) { margin-right:0; }
   .contact .contact-action { font-size:1em; }
-  #create-form input { width:auto; }
+  #create-form input, #create-form textarea { width:220px; }
   #create-form input[type="submit"] { float:right; }
 }
