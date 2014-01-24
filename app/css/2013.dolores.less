@@ -109,10 +109,16 @@ body {
 		opacity: 1;
 	}
 
-	input {
+	input, textarea {
+		border: 1px solid #dddddd;
 		.inline-block();
 		margin: .25em .5em .25em 0;
 		width: 100%;
+	}
+	
+	textarea {
+		height: 3em;
+		resize: vertical;
 	}
 
 	input[type="submit"] {
@@ -184,9 +190,18 @@ body {
 			margin: .25em 0;
 		}
 
-		input {
+		input, textarea {
+			border: 1px solid #dddddd;
+			.inline-block();
+			margin: .25em .5em .25em 0;
 			width: 90%;
 		}
+	
+		textarea {
+			height: 3em;
+			resize: vertical;
+		}
+
 
 		input[type="submit"] {
 			.button();
@@ -243,8 +258,8 @@ body {
 
 
 	#create-form {
-		input {
-			width: auto;
+		input, textarea {
+			width: 220px;
 		}
 
 	input[type="submit"] {
