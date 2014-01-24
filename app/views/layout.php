@@ -25,28 +25,43 @@
 				--><input type="submit" value="Suche starten" /><!--
 			--></form>
 
-			<form action="/contact/create" id="create-form" method="post">
-				<!-- Vorname -->
-				<input name="contact[fields][0][type]" type="hidden" value="first_name" />
-				<input name="contact[fields][0][label]" type="hidden" value="Vorname" />
-				<input name="contact[fields][0][value]" placeholder="Vorname" type="text" />
-				<!-- Nachname -->
-				<input name="contact[fields][1][type]" type="hidden" value="last_name" />
-				<input name="contact[fields][1][label]" type="hidden" value="Nachname" />
-				<input name="contact[fields][1][value]" placeholder="Nachname" type="text" />
-				<!-- E-Mail -->
-				<input name="contact[fields][2][type]" type="hidden" value="email" />
-				<input name="contact[fields][2][label]" type="hidden" value="E-Mail" />
-				<input name="contact[fields][2][value]" placeholder="E-Mail" type="text" />
-				<!-- Telefon -->
-				<input name="contact[fields][3][type]" type="hidden" value="phone_landline_business" />
-				<input name="contact[fields][3][label]" type="hidden" value="Telefon" />
-				<input name="contact[fields][3][value]" placeholder="Telefon" type="text" />
-				<!-- Mobil -->
-				<input name="contact[fields][4][type]" type="hidden" value="phone_cell_business" />
-				<input name="contact[fields][4][label]" type="hidden" value="Mobil" />
-				<input name="contact[fields][4][value]" placeholder="Mobil" type="text" />
+			<?php
+				$contact_fields = array();
+				$contact_fields[0]['type'] = 'first_name';
+				$contact_fields[0]['label'] = 'Vorname';
+				$contact_fields[0]['input'] = 'text';
+				
+				$contact_fields[1]['type'] = 'last_name';
+				$contact_fields[1]['label'] = 'Nachname';
+				$contact_fields[1]['input'] = 'text';
 
+				$contact_fields[2]['type'] = 'email';
+				$contact_fields[2]['label'] = 'E-Mail';
+				$contact_fields[2]['input'] = 'text';
+
+				$contact_fields[3]['type'] = 'phone_landline_business';
+				$contact_fields[3]['label'] = 'Telefon';
+				$contact_fields[3]['input'] = 'text';
+
+				$contact_fields[4]['type'] = 'phone_cell_business';
+				$contact_fields[4]['label'] = 'Mobil';
+				$contact_fields[4]['input'] = 'text';
+
+				$contact_fields[5]['type'] = 'note';
+				$contact_fields[5]['label'] = 'Notizen';
+				$contact_fields[5]['input'] = 'textarea';
+			?>
+
+			<form action="/contact/create" id="create-form" method="post">
+				<?php foreach($contact_fields as $key => $contact_field): ?>
+					<input name="contact[fields][<?php print $key; ?>][type]" type="hidden" value="<?php print $contact_field['type']; ?>" />
+					<input name="contact[fields][<?php print $key; ?>][label]" type="hidden" value="<?php print $contact_field['label']; ?>" />
+					<?php if($contact_field['input'] == 'textarea'): ?>
+						<textarea name="contact[fields][<?php print $key; ?>][value]" placeholder="<?php print $contact_field['label']; ?>"></textarea>
+					<?php else: ?>
+						<input name="contact[fields][<?php print $key; ?>][value]" placeholder="<?php print $contact_field['label']; ?>" type="text" />
+					<?php endif; ?>
+				<?php endforeach; ?>
 				<input type="submit" value="Kontakt erstellen" />
 			</form>
 
@@ -75,11 +90,27 @@
 										print sprintf('<input name="contact[_rev]" type="hidden" value="%s" /> ', $contact->value->{'_rev'});
 
 										print '<ul>';
-										foreach($contact->value->fields as $key => $field) {
+										foreach($contact_fields as $key => $contact_field)
+										{
 											print '<li>';
-											print sprintf('<input name="contact[fields][%s][type]" type="hidden" value="%s" /> ', $key, $field->type);
-											print sprintf('<input name="contact[fields][%s][label]" type="hidden" value="%s" />', $key, $field->label);
-											print sprintf('<input name="contact[fields][%s][value]" placeholder="%s" type="text" value="%s" /> ', $key, $field->label, $field->value);
+											print sprintf('<input name="contact[fields][%s][type]" type="hidden" value="%s" /> ', $key, $contact_field['type']);
+											print sprintf('<input name="contact[fields][%s][label]" type="hidden" value="%s" />', $key, $contact_field['label']);
+											
+											$value = '';
+											foreach($contact->value->fields as $field) {
+												if($field->type == $contact_field['type'])
+												{
+													$value = $field->value;
+												}
+											}
+											
+											if($contact_field['input'] == 'textarea')
+											{
+												print sprintf('<textarea name="contact[fields][%s][value]" placeholder="%s">%s</textarea>', $key, $contact_field['label'], $value);
+											} else {
+												print sprintf('<input name="contact[fields][%s][value]" placeholder="%s" type="text" value="%s" /> ', $key, $contact_field['label'], $value);
+											}
+
 											print '</li>';
 										}
 										print '<li><input type="submit" value="Kontakt speichern" /></li>';
@@ -97,7 +128,6 @@
 				function render_field($fields, $field_name, $show_label = true) {
 					if(is_array($fields)) {
 						foreach($fields as $key => $field) {
-							error_log(print_r($field, 1));
 							if(isset($field->type) && $field->type === $field_name) {
 								return ($show_label ? sprintf('<label>%s</label>', $field->label) : '') . sprintf('<span>%s</span>', $field->value);
 							}
